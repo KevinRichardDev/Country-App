@@ -13,12 +13,11 @@
 
 // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
 
-let flags = [];
 
-async function fetchFlag() {
-  await fetch('https://restcountries.com/v3.1/all')
-    .then((res) => res.array)
-    .then((data) => (data.array));
+async function fetchData() {
+  await fetch("https://restcountries.com/v3.1/all")
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+};
 
-  console.log(data.array);
-}
+fetchData()
