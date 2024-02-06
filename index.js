@@ -13,18 +13,43 @@
 
 // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
 
-const inputSearch = document.querySelector('.inputSearch');
-const inputRange = document.querySelector('.inputRange');
-const rangeValue = document.querySelector('.rangeValue')
+const inputSearch = document.querySelector(".inputSearch");
+const inputRange = document.querySelector(".inputRange");
+const rangeValue = document.querySelector(".rangeValue");
 
 let fetchDataInfo = [];
 
-async function fetchData() {
+async function fetchData(search) {
   await fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((data) => (fetchDataInfo = data));
   console.log(fetchDataInfo);
-};
+}
 
-fetchData()
+fetchData();
 
+function countryDisplay() {
+  if (fetchDataInfo === null) {
+    XPathResult.innerHTML = "<h2>Aucun résultat</h2>";
+  } else {
+    result.innerHTML = fetchDataInfo.map((country) => {
+      let infos = [];
+      let name = data.name;
+      let capital = data.capital;
+      let population = data.population;
+      infos.push(`<li>${name} - ${capital} - ${population}</li>`);
+    });
+  }
+  console.log(infos);
+
+  return `
+  <div class="countries-container">
+  <h2></h2>
+  </div>
+  `;
+}
+
+// inputSearch.addEventListener("input", (e) => {
+//   e.preventDefault();
+//   countryDisplay();
+// });
