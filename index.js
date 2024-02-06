@@ -13,45 +13,78 @@
 
 // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
 
-const inputSearch = document.querySelector(".inputSearch");
-const inputRange = document.querySelector(".inputRange");
-const rangeValue = document.querySelector(".rangeValue");
+// Correction
 
-let fetchDataInfo = [];
+const countriesContainer = document.querySelector(".countries-container");
+let countriesData = [];
 
-async function fetchData() {
+console.log(countriesContainer);
+
+async function fetchCountries() {
   await fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
-    .then((data) => (fetchDataInfo = data));
-  console.log(fetchDataInfo);
+    .then((data) => (countriesData = data));
+
+  console.log(countriesData);
+  countriesDisplay();
 }
 
-fetchData();
-
-function countryDisplay() {
-  if (fetchDataInfo === null) {
-    document.innerHTML = "<h2>Aucun résultat</h2>";
-  } else {
-    document.innerHTML = fetchDataInfo.map((infos) => {
-      let countryInfos = [];
-      let name = data.name;
-      let capital = data.capital;
-      let population = data.population;
-      countryInfos.push(`<li>${name} - ${capital} - ${population}</li>`);
-    });
-  }
-  console.log(countryInfos);
-
-  return `
-  <div class="countries-container">
-  <h2>${infos.name}</h2>
-  <h3>${infos.capital}</h3>
-  <h3>${infos.population}</h3>
-  </div>
-  `;
+function countriesDisplay() {
+  countriesContainer.innerHTML = countriesData
+    .map(
+      (country) =>
+        `
+        <div class="card">
+          <h2>${country.translations.fra.common}</h2>
+        </div>
+      `
+    )
+    .join("");
 }
 
-inputSearch.addEventListener("input", (e) => {
-  e.preventDefault();
-  countryDisplay();
-});
+window.addEventListener("load", fetchCountries);
+
+// Exercice
+
+// const inputSearch = document.querySelector(".inputSearch");
+// const inputRange = document.querySelector(".inputRange");
+// const rangeValue = document.querySelector(".rangeValue");
+
+// let fetchDataInfo = [];
+
+// async function fetchData() {
+//   await fetch("https://restcountries.com/v3.1/all")
+//     .then((res) => res.json())
+//     .then((data) => (fetchDataInfo = data));
+//   console.log(fetchDataInfo);
+// }
+
+// fetchData();
+
+// function countryDisplay() {
+//   if (fetchDataInfo === null) {
+//     document.innerHTML = "<h2>Aucun résultat</h2>";
+//   } else {
+//     document.innerHTML = fetchDataInfo.map((infos) => {
+//       let countryInfos = [];
+//       let name = data.name;
+//       let capital = data.capital;
+//       let population = data.population;
+//       countryInfos.push(`<li>${name} - ${capital} - ${population}</li>`);
+//     });
+//   }
+//   console.log(countryInfos);
+
+//   return `
+//   <div class="countries-container">
+//   <h2>${data.name}</h2>
+//   <h3>${data.capital}</h3>
+//   <h3>${data.population}</h3>
+//   </div>
+//   `;
+// }
+
+// inputSearch.addEventListener("input", (e) => {
+//   e.preventDefault();
+//   countryDisplay();
+// });
