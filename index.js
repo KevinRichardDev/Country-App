@@ -19,7 +19,7 @@ const rangeValue = document.querySelector(".rangeValue");
 
 let fetchDataInfo = [];
 
-async function fetchData(search) {
+async function fetchData() {
   await fetch("https://restcountries.com/v3.1/all")
     .then((res) => res.json())
     .then((data) => (fetchDataInfo = data));
@@ -30,26 +30,28 @@ fetchData();
 
 function countryDisplay() {
   if (fetchDataInfo === null) {
-    XPathResult.innerHTML = "<h2>Aucun résultat</h2>";
+    document.innerHTML = "<h2>Aucun résultat</h2>";
   } else {
-    result.innerHTML = fetchDataInfo.map((country) => {
-      let infos = [];
-      let name = data.name;
-      let capital = data.capital;
-      let population = data.population;
-      infos.push(`<li>${name} - ${capital} - ${population}</li>`);
+    document.innerHTML = fetchDataInfo.map((infos) => {
+      let countryInfos = [];
+      let name = infos.name;
+      let capital = infos.capital;
+      let population = infos.population;
+      // countryInfos.push(`<li>${name} - ${capital} - ${population}</li>`);
     });
   }
-  console.log(infos);
+  console.log(countryInfos);
 
   return `
   <div class="countries-container">
-  <h2></h2>
+  <h2>${infos.name}</h2>
+  <h3>${infos.capital}</h3>
+  <h3>${infos.population}</h3>
   </div>
   `;
 }
 
-// inputSearch.addEventListener("input", (e) => {
-//   e.preventDefault();
-//   countryDisplay();
-// });
+inputSearch.addEventListener("input", (e) => {
+  e.preventDefault();
+  countryDisplay();
+});
