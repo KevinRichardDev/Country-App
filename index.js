@@ -34,10 +34,10 @@ function countryDisplay() {
   } else {
     document.innerHTML = fetchDataInfo.map((infos) => {
       let countryInfos = [];
-      let name = infos.name;
-      let capital = infos.capital;
-      let population = infos.population;
-      // countryInfos.push(`<li>${name} - ${capital} - ${population}</li>`);
+      let name = data.name;
+      let capital = data.capital;
+      let population = data.population;
+      countryInfos.push(`<li>${name} - ${capital} - ${population}</li>`);
     });
   }
   console.log(countryInfos);
