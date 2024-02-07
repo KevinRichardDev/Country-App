@@ -1,7 +1,3 @@
-
-
-// 6 - Avec la méthode Slice gérer le nombre de pays affichés (inputRange.value)
-
 // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
 
 // 1 - Tester le lien de l'API dans le navigateur (https://restcountries.com/v3.1/all)
@@ -25,13 +21,16 @@ async function fetchCountries() {
   countriesDisplay();
 }
 
-
 function countriesDisplay() {
   countriesContainer.innerHTML = countriesData
-  // 5 - Récupérer ce qui est tapé dans l'input et filtrer (avant le map) les données
+    // 5 - Récupérer ce qui est tapé dans l'input et filtrer (avant le map) les données
     .filter((country) =>
-      country.translations.fra.common.toLowerCase().includes(inputSearch.value.toLowerCase())
+      country.translations.fra.common
+        .toLowerCase()
+        .includes(inputSearch.value.toLowerCase())
     )
+    // 6 - Avec la méthode Slice gérer le nombre de pays affichés (inputRange.value)
+    .slice(0, inputRange.value)
     // 4 - Créer une fonction d'affichage, et paramétrer l'affichage des cartes de chaque pays grace à la méthode MAP
     .map(
       (country) =>
@@ -51,3 +50,7 @@ function countriesDisplay() {
 
 window.addEventListener("load", fetchCountries);
 inputSearch.addEventListener("input", countriesDisplay);
+inputRange.addEventListener("input", () => {
+  countriesDisplay();
+  rangeValue.textContent = inputRange.value;
+});
