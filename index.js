@@ -1,23 +1,20 @@
-// 1 - Tester le lien de l'API dans le navigateur (https://restcountries.com/v3.1/all)
 
-// 2 - Créer une fonction pour "fetcher" les données, afficher les données dans la console.
-
-// 3 - Passer les données à une variable
-
-// 4 - Créer une fonction d'affichage, et paramétrer l'affichage des cartes de chaque pays grace à la méthode MAP
-
-// 5 - Récupérer ce qui est tapé dans l'input et filtrer (avant le map) les données
-// coutry.name.includes(inputSearch.value);
 
 // 6 - Avec la méthode Slice gérer le nombre de pays affichés (inputRange.value)
 
 // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
 
+// 1 - Tester le lien de l'API dans le navigateur (https://restcountries.com/v3.1/all)
+
 const inputSearch = document.getElementById("inputSearch");
 const countriesContainer = document.querySelector(".countries-container");
+
+// 3 - Passer les données à une variable
 let countriesData = [];
 
 console.log(countriesContainer);
+
+// 2 - Créer une fonction pour "fetcher" les données, afficher les données dans la console.
 
 async function fetchCountries() {
   await fetch("https://restcountries.com/v3.1/all")
@@ -28,11 +25,14 @@ async function fetchCountries() {
   countriesDisplay();
 }
 
+
 function countriesDisplay() {
   countriesContainer.innerHTML = countriesData
+  // 5 - Récupérer ce qui est tapé dans l'input et filtrer (avant le map) les données
     .filter((country) =>
-      country.translations.fra.common.includes(inputSearch.value)
+      country.translations.fra.common.toLowerCase().includes(inputSearch.value.toLowerCase())
     )
+    // 4 - Créer une fonction d'affichage, et paramétrer l'affichage des cartes de chaque pays grace à la méthode MAP
     .map(
       (country) =>
         `
@@ -50,4 +50,4 @@ function countriesDisplay() {
 }
 
 window.addEventListener("load", fetchCountries);
-inputSearch.addEventListener("input", countriesDisplay)
+inputSearch.addEventListener("input", countriesDisplay);
