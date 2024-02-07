@@ -13,7 +13,6 @@
 
 // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
 
-// Correction
 
 const countriesContainer = document.querySelector(".countries-container");
 let countriesData = [];
@@ -35,7 +34,10 @@ function countriesDisplay() {
       (country) =>
         `
         <div class="card">
+          <img src=${country.flags.svg} alt="drapeau ${country.translations.fra.common}">
           <h2>${country.translations.fra.common}</h2>
+          <h4>${country.capital}</h4>
+          <p>Population : ${country.population.toLocaleString()}</p>
         </div>
       `
     )
@@ -44,47 +46,4 @@ function countriesDisplay() {
 
 window.addEventListener("load", fetchCountries);
 
-// Exercice
 
-// const inputSearch = document.querySelector(".inputSearch");
-// const inputRange = document.querySelector(".inputRange");
-// const rangeValue = document.querySelector(".rangeValue");
-
-// let fetchDataInfo = [];
-
-// async function fetchData() {
-//   await fetch("https://restcountries.com/v3.1/all")
-//     .then((res) => res.json())
-//     .then((data) => (fetchDataInfo = data));
-//   console.log(fetchDataInfo);
-// }
-
-// fetchData();
-
-// function countryDisplay() {
-//   if (fetchDataInfo === null) {
-//     document.innerHTML = "<h2>Aucun résultat</h2>";
-//   } else {
-//     document.innerHTML = fetchDataInfo.map((infos) => {
-//       let countryInfos = [];
-//       let name = data.name;
-//       let capital = data.capital;
-//       let population = data.population;
-//       countryInfos.push(`<li>${name} - ${capital} - ${population}</li>`);
-//     });
-//   }
-//   console.log(countryInfos);
-
-//   return `
-//   <div class="countries-container">
-//   <h2>${data.name}</h2>
-//   <h3>${data.capital}</h3>
-//   <h3>${data.population}</h3>
-//   </div>
-//   `;
-// }
-
-// inputSearch.addEventListener("input", (e) => {
-//   e.preventDefault();
-//   countryDisplay();
-// });
