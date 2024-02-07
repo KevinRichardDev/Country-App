@@ -1,5 +1,3 @@
-// 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
-
 // 1 - Tester le lien de l'API dans le navigateur (https://restcountries.com/v3.1/all)
 
 const inputSearch = document.getElementById("inputSearch");
@@ -29,6 +27,10 @@ function countriesDisplay() {
         .toLowerCase()
         .includes(inputSearch.value.toLowerCase())
     )
+    // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
+    .sort((a, b) => {
+      return b.population - a.population;
+    })
     // 6 - Avec la méthode Slice gérer le nombre de pays affichés (inputRange.value)
     .slice(0, inputRange.value)
     // 4 - Créer une fonction d'affichage, et paramétrer l'affichage des cartes de chaque pays grace à la méthode MAP
