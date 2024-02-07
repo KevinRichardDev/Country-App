@@ -13,7 +13,7 @@
 
 // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
 
-
+const inputSearch = document.getElementById("inputSearch");
 const countriesContainer = document.querySelector(".countries-container");
 let countriesData = [];
 
@@ -30,11 +30,16 @@ async function fetchCountries() {
 
 function countriesDisplay() {
   countriesContainer.innerHTML = countriesData
+    .filter((country) =>
+      country.translations.fra.common.includes(inputSearch.value)
+    )
     .map(
       (country) =>
         `
         <div class="card">
-          <img src=${country.flags.svg} alt="drapeau ${country.translations.fra.common}">
+          <img src=${country.flags.svg} alt="drapeau ${
+          country.translations.fra.common
+        }">
           <h2>${country.translations.fra.common}</h2>
           <h4>${country.capital}</h4>
           <p>Population : ${country.population.toLocaleString()}</p>
@@ -45,5 +50,4 @@ function countriesDisplay() {
 }
 
 window.addEventListener("load", fetchCountries);
-
-
+inputSearch.addEventListener("input", countriesDisplay)
