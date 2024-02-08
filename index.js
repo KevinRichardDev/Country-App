@@ -5,6 +5,7 @@ const countriesContainer = document.querySelector(".countries-container");
 
 // 3 - Passer les données à une variable
 let countriesData = [];
+let sortMethod = "maxToMin";
 
 console.log(countriesContainer);
 
@@ -29,8 +30,13 @@ function countriesDisplay() {
     )
     // 7 - Gérer les 3 boutons pour trier (méthode sort()) les pays
     .sort((a, b) => {
-      return b.population - a.population;
+      if (sortMethod === "maxToMin") {
+        return b.population - a.population;
+      } else if (sortMethod === "minToMax") {
+        return a.population - b.population;
+      }
     })
+
     // 6 - Avec la méthode Slice gérer le nombre de pays affichés (inputRange.value)
     .slice(0, inputRange.value)
     // 4 - Créer une fonction d'affichage, et paramétrer l'affichage des cartes de chaque pays grace à la méthode MAP
