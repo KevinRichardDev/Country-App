@@ -5,7 +5,7 @@ const countriesContainer = document.querySelector(".countries-container");
 const btnSort = document.querySelectorAll(".btnSort");
 // 3 - Passer les données à une variable
 let countriesData = [];
-let sortMethod = "alpha";
+let sortMethod = "maxToMin";
 
 
 // 2 - Créer une fonction pour "fetcher" les données, afficher les données dans la console.
@@ -63,3 +63,10 @@ inputRange.addEventListener("input", () => {
   countriesDisplay();
   rangeValue.textContent = inputRange.value;
 });
+
+btnSort.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    sortMethod = e.target.id;
+    countriesDisplay();
+  })
+})
