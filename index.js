@@ -2,12 +2,11 @@
 
 const inputSearch = document.getElementById("inputSearch");
 const countriesContainer = document.querySelector(".countries-container");
-
+const btnSort = document.querySelectorAll(".btnSort");
 // 3 - Passer les données à une variable
 let countriesData = [];
-let sortMethod = "maxToMin";
+let sortMethod = "alpha";
 
-console.log(countriesContainer);
 
 // 2 - Créer une fonction pour "fetcher" les données, afficher les données dans la console.
 
@@ -35,7 +34,7 @@ function countriesDisplay() {
       } else if (sortMethod === "minToMax") {
         return a.population - b.population;
       } else if (sortMethod === "alpha") {
-        return
+        return a.translations.fra.common.localeCompare(b.translations.fra.common);
       }
     })
 
