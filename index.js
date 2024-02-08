@@ -34,6 +34,8 @@ function countriesDisplay() {
         return b.population - a.population;
       } else if (sortMethod === "minToMax") {
         return a.population - b.population;
+      } else if (sortMethod === "alpha") {
+        return
       }
     })
 
